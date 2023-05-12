@@ -50,15 +50,9 @@ end
 
 
 function PR = perms_rep(N,K)
-% This is (basically) the same as npermutek found on the FEX.  It is the  
-% fastest way to calculate these (in MATLAB) that I know.  
-% pr = @(N,K) N^K;  Number of rows.
-% A speed comparison could be made with COMBN.m, found on the FEX.  This
-% is an excellent code which uses ndgrid.  COMBN is written by Jos.
-%
+        
 %      % All timings represent the best of 4 consecutive runs.
-%      % All timings shown in subfunction notes used this configuration:
-%      % 2007a 64-bit, Intel Xeon, win xp 64, 16 GB RAM  
+%      % All timings shown in subfunction notes used this configuration
 %      tic,Tc = combinator(single(9),7,'p','r');toc  
 %      %Elapsed time is 0.199397 seconds.  Allow Ctrl+T+C+R on block
 %      tic,Tj = combn(single(1:9),7);toc  
