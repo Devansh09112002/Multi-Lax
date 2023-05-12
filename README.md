@@ -1,0 +1,1 @@
+This project involves using mathematics and MATLAB code to perform multilateration in 3D space, based on the reception times of an impulse created by an emitter and received by 4 or more microphones. The goal is to determine the location of the emitter, which can be applied in activities such as advanced bird watching.
