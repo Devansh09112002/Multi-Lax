@@ -54,27 +54,7 @@ function [A] = combinator(N,K,s1,s2)
 % If only two inputs are used, the function will assume 'p','r'.
 % The third argument must begin with either a 'p' or a 'c' but can be any
 % string beyond that.
-%
-% The permutations with repetitions algorithm uses cumsum.  So does the
-% combinations without repetition algorithm for the special case of K=2.
-% Unfortunately, MATLAB does not allow cumsum to work with integer classes.
-% Thus a subfunction has been placed at the end for the case when these
-% classes are passed.  The subfunction will automatically pass the
-% necessary matrix to the built-in cumsum when a single or double is used.
-% When an integer class is used, the subfunction first looks to see if the
-% accompanying MEX-File (cumsumall.cpp) has been compiled.  If not, 
-% then a MATLAB For loop is used to perform the cumsumming.  This is 
-% VERY slow!  Therefore it is recommended to compile the MEX-File when 
-% using integer classes. 
-% The MEX-File was tested by the author using the Borland 5.5 C++ compiler.
-% 
-% See also, perms, nchoosek, npermutek (on the FEX)
-%             
-% Author:   Matt Fig
-% Contact:  popkenai@yahoo.com
-% Date:     5/30/2009
-%
-% Reference:  http://mathworld.wolfram.com/BallPicking.html
+
 
 ng = nargin;
 
