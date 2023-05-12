@@ -46,13 +46,8 @@ catch
     % The only error thrown should be K>N for non-replacement calls.
 end
 
-
-
-
 function PR = perms_rep(N,K)
         
-%      % All timings represent the best of 4 consecutive runs.
-%      % All timings shown in subfunction notes used this configuration
 %      tic,Tc = combinator(single(9),7,'p','r');toc  
 %      %Elapsed time is 0.199397 seconds.  Allow Ctrl+T+C+R on block
 %      tic,Tj = combn(single(1:9),7);toc  
@@ -74,6 +69,7 @@ PR = zeros(L,K,CN);  % Preallocation.
 D = ones(1,N-1,CN);  % Use this for cumsumming later.
 LD = M-1;  % See comment on N. 
 VL = [-(N-1) D].';  % These values will be put into PR.
+    
 % Now start building the matrix.
 TMP = VL(:,ones(L/M,1,CN));  % Instead of repmatting.
 PR(:,K) = TMP(:);  % We don't need to do two these in loop.
@@ -88,10 +84,8 @@ end
 PR(1,:) = 1;  % For proper cumsumming.
 PR = cumsum2(PR);  % This is the time hog.
 
-
-
-
 function PN = perms_no_rep(N,K)
+        
 % Subfunction: permutations without replacement.
 % Uses the algorithm in combs_no_rep as a basis, then permutes each row.
 % pn = @(N,K) prod(1:N)/(prod(1:(N-K)));  Number of rows.
@@ -144,18 +138,8 @@ end
 
 V = (N-K+1):N;  % Final vector.
 PN(cnt:(cnt+L-1),:) = V(P);  % Fill final block.
-% The sorting below is NOT necessary.  If you prefer this nice
-% order, the next two lines can be un-commented.
-% [id,id] = sort(PN(:,1));  %#ok  This is not necessary!
-% PN = PN(id,:);  % Return values.
-
-
-
 
 function P = perms_loop(N)
-% Helper function to perms_no_rep.  This is basically the same as the
-% MATLAB function perms.  It has been un-recursed for a runtime of around  
-% half the recursive version found in perms.m  For example:
 %
 %      tic,Tp = perms(1:9);toc
 %      %Elapsed time is 0.222111 seconds.  Allow Ctrl+T+C+R on block
@@ -186,9 +170,6 @@ for n = 2:M
     end 
 end
 
-
-
-
 function CR = combs_rep(N,K)
 % Subfunction multichoose:  combinations with replacement.
 % cr = @(N,K) prod((N):(N+K-1))/(prod(1:K)); Number of rows.
@@ -214,15 +195,11 @@ for ii = 2:mch
     CR(ii,:) = WV;
 end
 
-
-
-
 function CN = combs_no_rep(N,K)
-% Subfunction choose:  combinations w/o replacement.
+    
 % cn = @(N,K) prod(N-K+1:N)/(prod(1:K));  Number of rows.
 % Same output as the MATLAB function nchoosek(1:N,K), but often faster for
 % larger N.
-% For example: 
 %
 %      tic,Tn = nchoosek(1:17,8);toc
 %      %Elapsed time is 0.430216 seconds.  Allow Ctrl+T+C+R on block
@@ -282,14 +259,7 @@ end
   
 CN(ii+1,:) = (N-K+1):N;
 
-
-
-
 function A = cumsum2(A)
-%CUMSUM2, works with integer classes. 
-% Duplicates the action of cumsum, but for integer classes.
-% If Matlab ever allows cumsum to work for integer classes, we can remove 
-% this.
 
 if isfloat(A)
     A = cumsum(A);  % For single and double, use built-in.
